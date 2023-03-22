@@ -30,6 +30,9 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
 	</PropertyGroup>
 
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net7.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
@@ -39,9 +42,6 @@
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
-		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
-
-		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
 
 		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
@@ -50,6 +50,26 @@
 
 	<ItemGroup>
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+		<PackageReference Include="AWSSDK.S3" Version="3.7.103.29" />
+		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\FreedomFont.otf" />
+	  <None Remove="Resources\Images\Camera_Icon.png" />
+	  <None Remove="Resources\Images\camera-svgrepo-com %281%29.svg" />
+	  <None Remove="AWSSDK.S3" />
+	  <None Remove="Resources\Images\croppedbeerlogo.png" />
+	  <None Remove="Microsoft.Extensions.Configuration.Json" />
+	  <None Remove="Microsoft.Extensions.Options.ConfigurationExtensions" />
+	  <None Remove="Resources\Images\takePictureButton.png" />
+	  <None Remove="Resources\Images\choosepicturebutton.png" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Fonts\FreedomFont.otf" />
+	  <BundleResource Include="Resources\Images\croppedbeerlogo.png" />
+	  <BundleResource Include="Resources\Images\takepicturebutton.png" />
+	  <BundleResource Include="Resources\Images\choosepicturebutton.png" />
+	</ItemGroup>
 </Project>
