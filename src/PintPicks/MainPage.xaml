@@ -1,41 +1,64 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="PintPicks.MainPage">
+             x:Class="PintPicks.MainPage"
+             Shell.NavBarIsVisible="False"
+             BackgroundColor="Transparent">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Spacing="25"
-            Padding="30,0"
-            VerticalOptions="Center">
+    <!--Makes background gradient-->
+    <ContentPage.Resources>
+        <LinearGradientBrush x:Key="DiagonalGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#FFE072" Offset="0"/>
+            <GradientStop Color="#FFA93B" Offset="1"/>
+        </LinearGradientBrush>
+        
+    </ContentPage.Resources>
 
-            <Image
-                Source="dotnet_bot.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
 
-            <Label
-                Text="Hello, World!"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
+             
+    <StackLayout Orientation="Vertical" Background="{StaticResource DiagonalGradient}">
 
-            <Label
-                Text="Welcome to .NET Multi-platform App UI"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I"
-                FontSize="18"
-                HorizontalOptions="Center" />
+        <Label
+            Text="PintPicks"
+            FontSize="45"
+            FontFamily="FreedomFont"
+            HorizontalTextAlignment="Center"
+            TextColor="Black"
+        />
+        <!--Adds logo to top of screen-->
+        <Image Source="croppedbeerlogo.png"
+            WidthRequest="150"
+            HeightRequest="150"
+            Aspect="AspectFit"
+        />
 
-            <Button
-                x:Name="CounterBtn"
-                Text="Click me"
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
-                HorizontalOptions="Center" />
+        <!--Creates button and calls clicking method-->
+        <ImageButton
+            Source="choosepicturebutton.png"
+            WidthRequest="250"
+            HeightRequest="250"
+            Clicked="OnChoosePictureClicked"
+            x:Name="imageButton"
+        />
+        <!--Creates button and calls clicking method-->
+        <ImageButton
+            Source="takepicturebutton.png"
+            WidthRequest="250"
+            HeightRequest="250"
+            Clicked="OnTakePictureClicked"
+            x:Name="imageButton2"
+            Margin="-35"
+        />
+        <!--Adds slogan to bottom of page-->
+        <Label
+            HorizontalTextAlignment="Center"
+            Text="The ultimate guide to the perfect pint!"
+            FontFamily="FreedomFont"
+            FontSize="20"
+            TextColor="Black"
+            Margin="70"
+            />
 
-        </VerticalStackLayout>
-    </ScrollView>
+    </StackLayout>
 
 </ContentPage>

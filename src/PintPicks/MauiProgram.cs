@@ -4,9 +4,13 @@ namespace PintPicks;
 
 public static class MauiProgram
 {
-	public static MauiApp CreateMauiApp()
+
+
+    public static MauiApp CreateMauiApp()
 	{
-		var builder = MauiApp.CreateBuilder();
+
+        var builder = MauiApp.CreateBuilder();
+
 		builder
 			.UseMauiApp<App>()
             .RegisterAppServices()
@@ -17,7 +21,7 @@ public static class MauiProgram
 			});
 
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();
