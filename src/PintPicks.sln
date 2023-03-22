@@ -5,6 +5,17 @@ VisualStudioVersion = 17.0.31611.283
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PintPicks", "PintPicks\PintPicks.csproj", "{B8ECE32E-3683-4E1D-B4A9-EEB0A1436171}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PintPicks.Api.Client", "PintPicks.Api.Client\PintPicks.Api.Client.csproj", "{DB4101FA-FC2F-4EAC-B403-21247B2FF44C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PintPicks.Api.Contract", "PintPicks.Api.Contract\PintPicks.Api.Contract.csproj", "{D90BDA75-AB22-4085-A7CA-28A00701B8F0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PintPicks.Client.Tests", "..\tests\PintPicks.Client.Tests\PintPicks.Client.Tests.csproj", "{D9A50A87-AC79-4BF8-9A9A-AC11BF6A082A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8DD27821-3027-45A0-8EBD-7EB4D600EF65}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +28,18 @@ Global
 		{B8ECE32E-3683-4E1D-B4A9-EEB0A1436171}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8ECE32E-3683-4E1D-B4A9-EEB0A1436171}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B8ECE32E-3683-4E1D-B4A9-EEB0A1436171}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{DB4101FA-FC2F-4EAC-B403-21247B2FF44C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DB4101FA-FC2F-4EAC-B403-21247B2FF44C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DB4101FA-FC2F-4EAC-B403-21247B2FF44C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DB4101FA-FC2F-4EAC-B403-21247B2FF44C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D90BDA75-AB22-4085-A7CA-28A00701B8F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D90BDA75-AB22-4085-A7CA-28A00701B8F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D90BDA75-AB22-4085-A7CA-28A00701B8F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D90BDA75-AB22-4085-A7CA-28A00701B8F0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D9A50A87-AC79-4BF8-9A9A-AC11BF6A082A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D9A50A87-AC79-4BF8-9A9A-AC11BF6A082A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D9A50A87-AC79-4BF8-9A9A-AC11BF6A082A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D9A50A87-AC79-4BF8-9A9A-AC11BF6A082A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
-
+using PintPicks.Api.Client;
 namespace PintPicks;
 
 public static class MauiProgram
@@ -13,6 +13,7 @@ public static class MauiProgram
 
 		builder
 			.UseMauiApp<App>()
+            .RegisterAppServices()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -25,4 +26,10 @@ public static class MauiProgram
 
 		return builder.Build();
 	}
+
+    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
+    {
+        mauiAppBuilder.Services.AddPintPicksClient(new Uri("https://dl4f2wy9w7.execute-api.us-east-1.amazonaws.com"));
+        return mauiAppBuilder;
+    }
 }

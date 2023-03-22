@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFrameworks>net7.0-android;net7.0-ios;net7.0-maccatalyst</TargetFrameworks>
@@ -56,6 +56,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+
 	  <None Remove="Resources\Fonts\FreedomFont.otf" />
 	  <None Remove="Resources\Images\Camera_Icon.png" />
 	  <None Remove="Resources\Images\camera-svgrepo-com %281%29.svg" />
@@ -72,4 +73,10 @@
 	  <BundleResource Include="Resources\Images\takepicturebutton.png" />
 	  <BundleResource Include="Resources\Images\choosepicturebutton.png" />
 	</ItemGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\PintPicks.Api.Client\PintPicks.Api.Client.csproj" />
+	</ItemGroup>
+
+
 </Project>
