@@ -38,8 +38,8 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
 
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
-
+		<MauiSplashScreen Include="Resources\Splash\clinkingbeer.svg" Color="#FFA93B" />
+		   
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
 		<MauiFont Include="Resources\Fonts\*" />
@@ -66,12 +66,16 @@
 	  <None Remove="Microsoft.Extensions.Options.ConfigurationExtensions" />
 	  <None Remove="Resources\Images\takePictureButton.png" />
 	  <None Remove="Resources\Images\choosepicturebutton.png" />
+	  <None Remove="Resources\Splash\testsvgsplash.svg" />
+	  <None Remove="Resources\Splash\testSplash.svg" />
+	  <None Remove="Resources\Splash\clinkingbeer.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\FreedomFont.otf" />
 	  <BundleResource Include="Resources\Images\croppedbeerlogo.png" />
 	  <BundleResource Include="Resources\Images\takepicturebutton.png" />
 	  <BundleResource Include="Resources\Images\choosepicturebutton.png" />
+	  <BundleResource Include="Resources\Splash\clinkingbeer.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
