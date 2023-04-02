@@ -27,7 +27,6 @@ public partial class MainPage : ContentPage {
 
 
         try {
-
             //Media Picker code
             var file = await FilePicker.PickAsync(new PickOptions
             {
