@@ -15,7 +15,7 @@
 		<ApplicationTitle>PintPicks</ApplicationTitle>
 
 		<!-- App Identifier -->
-		<ApplicationId>com.companyname.pintpicks</ApplicationId>
+		<ApplicationId>com.cs321g9.pintpicks</ApplicationId>
 		<ApplicationIdGuid>e472ca72-930e-4f0f-bce0-3bebbf5aee42</ApplicationIdGuid>
 
 		<!-- Versions -->
