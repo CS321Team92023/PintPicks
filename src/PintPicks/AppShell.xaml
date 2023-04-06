@@ -13,9 +13,4 @@
         Route="MainPage"
         Shell.NavBarIsVisible="true" />
 
-    <ShellContent
-    Title="Details"
-    ContentTemplate="{DataTemplate local:DetailsPage}"
-    Route="DetailsPage" />
-
 </Shell>

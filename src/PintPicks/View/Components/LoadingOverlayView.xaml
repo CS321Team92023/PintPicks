@@ -17,10 +17,10 @@
         <StackLayout HorizontalOptions="Center" VerticalOptions="Center">
             <ActivityIndicator
                 HorizontalOptions="Center"
-                IsRunning="{Binding IsRunning}"
+                IsRunning="True"
                 VerticalOptions="Center"
                 Color="{StaticResource Primary}" />
-            <Label Text="{Binding LoadingText}" TextColor="White" />
+            <Label Text="Analyzing menu..." TextColor="White" />
         </StackLayout>
     </Grid>
 </ContentView>

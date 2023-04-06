@@ -55,7 +55,7 @@
                     <Grid Padding="10,5">
                         <Frame HeightRequest="175" Style="{StaticResource CardView}">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding Path=PintTapped, RelativeSource={RelativeSource AncestorType={x:Type PintListPage}}}" />
+                                <TapGestureRecognizer Tapped="PintItemTapped" />
                             </Frame.GestureRecognizers>
                             <Grid
                                 Padding="0"

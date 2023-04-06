@@ -84,7 +84,6 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\Maui.Controls.RatingView\Maui.Controls.RatingView.csproj" />
 	  <ProjectReference Include="..\PintPicks.Api.Client\PintPicks.Api.Client.csproj" />
-	  <ProjectReference Include="..\..\..\Maui.Controls.RatingView\src\Maui.Controls.RatingView\Maui.Controls.RatingView.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -101,7 +100,7 @@
 
 
 	<ItemGroup>
-	  <MauiXaml Update="DetailsPage.xaml">
+	  <MauiXaml Update="View\Pages\DetailsPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>

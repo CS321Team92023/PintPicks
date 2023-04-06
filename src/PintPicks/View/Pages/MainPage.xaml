@@ -85,7 +85,7 @@
         <components:LoadingOverlayView
             Grid.RowSpan="2"
             Grid.ColumnSpan="2"
-            IsRunning="{Binding IsBusy}"
+            IsRunning="True"
             IsVisible="{Binding IsBusy}"
             LoadingText="Analyzing Pints..." />
     </Grid>

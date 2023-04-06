@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PintPicks.View.Pages.DetailsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.RatingView"
+    xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
+    Title="Detail View"
+    x:DataType="viewmodel:DetailsPageViewModel"
+    Shell.BackgroundColor="{StaticResource NavBarColor}"
+    Shell.NavBarIsVisible="True">
+
+    <!--  Makes background gradient  -->
+    <ContentPage.Resources>
+        <LinearGradientBrush x:Key="DiagonalGradient" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#FFE072" />
+            <GradientStop Offset="1" Color="#FFA93B" />
+        </LinearGradientBrush>
+    </ContentPage.Resources>
+
+
+    <ScrollView>
+        <StackLayout Background="{StaticResource DiagonalGradient}">
+            <!--  Implements Header  -->
+            <Label
+                FontFamily="FreedomFont"
+                FontSize="45"
+                HorizontalOptions="Center"
+                Text="PintPicks"
+                VerticalOptions="Center" />
+            <!--  Puts logo on page  -->
+            <Image
+                HeightRequest="150"
+                Source="croppedbeerlogo.png"
+                WidthRequest="150" />
+            <Label
+                Padding="0,35,0,20"
+                FontAttributes="Bold"
+                FontFamily=""
+                FontSize="25"
+                HorizontalOptions="Center"
+                Text="{Binding Pint.Name}"
+                TextColor="Black" />
+            <Label
+                Padding="0,0,0,10"
+                FontSize="17"
+                HorizontalOptions="Center"
+                Text="Overall Rating: 4.7/5.0"
+                TextColor="Black" />
+            <!--  Implements the rating system  -->
+            <controls:RatingView
+                HorizontalOptions="Center"
+                ItemCount="5"
+                ItemSize="18"
+                ItemSpacing="10"
+                RatedFillColor="DarkOrange"
+                ShapePath="m179.638,90.081c-7.693-6.157-11.276-15.514-11.276-29.446v-17.635h11.527v-43h-93v43h11.527v17.635c0,14.874-3.073,23.681-10.276,29.446-19.44,15.559-27.369,31.983-27.369,56.692v100.088c0,10.981 8.934,19.916 19.915,19.916h105.405c10.981,0 19.916-8.935 19.916-19.916v-100.088c0-22.616-9.611-43.28-26.369-56.692z"
+                StrokeColor="Black"
+                StrokeWidth="3"
+                UnRatedFillColor="White"
+                Value="5.1" />
+            <!--  Adds padding between rating system and beer image  -->
+            <Label Padding="10" />
+            <!--  Implements the image of the beer/beer box  -->
+            <Border
+                Background="white"
+                HeightRequest="200"
+                Opacity="1"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="5"
+                WidthRequest="200">
+                <Image Aspect="AspectFit">
+                    <Image.Source>
+                        <UriImageSource CacheValidity="10:00:00:00" Uri="{Binding Pint.Images.Medium}" />
+                    </Image.Source>
+                </Image>
+            </Border>
+
+            <!--  Adds padding between both borders  -->
+            <Label />
+            <!--  Creates a box around all the important details of the beer  -->
+            <Border
+                Background="white"
+                Opacity="1"
+                Stroke="Black"
+                StrokeShape="RoundRectangle 15"
+                StrokeThickness="3"
+                WidthRequest="350">
+                <StackLayout>
+                    <!--  Implements ABV view  -->
+                    <Label
+                        Padding="25,30,0,0"
+                        FontSize="17"
+                        Text="Alcohol by Volume (ABV): %x.y"
+                        TextColor="Black" />
+                    <!--  Implements IBU view  -->
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="International Bitterness Units (IBU): x"
+                        TextColor="Black" />
+                    <!--  Implements Organic view  -->
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="Organic: Y/N"
+                        TextColor="Black" />
+                    <!--  Implements Retired view  -->
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="Retired: Y/N"
+                        TextColor="Black" />
+                    <!--  Implements Description view  -->
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="{Binding Pint.Description}"
+                        TextColor="Black" />
+                    <!--  Implements Style view  -->
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="{Binding Pint.Style.Name, StringFormat='Style of Beer: {0}'}"
+                        TextColor="Black" />
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="ABV Max: x"
+                        TextColor="Black" />
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="ABV Min: y"
+                        TextColor="Black" />
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="fg Max: x"
+                        TextColor="Black" />
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="fg Min: y"
+                        TextColor="Black" />
+                    <Label
+                        Padding="25,20,0,0"
+                        FontSize="17"
+                        Text="IBU Max: x"
+                        TextColor="Black" />
+                    <Label
+                        Padding="25,20,0,20"
+                        FontSize="17"
+                        Text="IBU Min: y"
+                        TextColor="Black" />
+                    <!--
+                        More labels will go here to implement
+                        the slider view for the attributes of the beer/beer style
+                    -->
+
+                </StackLayout>
+            </Border>
+
+            <!--  Bottom of Page Slogan  -->
+            <Label
+                FontFamily="FreedomFont"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="The ultimate guide to the perfect pint!"
+                TextColor="Black" />
+
+
+        </StackLayout>
+
+    </ScrollView>
+
+</ContentPage>

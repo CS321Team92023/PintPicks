@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using PintPicks.Api.Contract;
+using PintPicks.View.Pages;
 using System.Collections.ObjectModel;
 
 namespace PintPicks.ViewModel
@@ -68,7 +69,7 @@ namespace PintPicks.ViewModel
             {
                 { "Pint", pint }
             };
-            //await Shell.Current.GoToAsync(nameof(PintDetailsPage), navigationParameter);
+            await Shell.Current.GoToAsync(nameof(DetailsPage), navigationParameter);
         }
     }
 }

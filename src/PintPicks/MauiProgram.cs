@@ -42,6 +42,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
         mauiAppBuilder.Services.AddTransient<PintListPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<DetailsPageViewModel>();
         return mauiAppBuilder;
     }
 
@@ -49,6 +50,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddTransient<MainPage>();
         mauiAppBuilder.Services.AddTransient<PintListPage>();
+        mauiAppBuilder.Services.AddTransient<DetailsPage>();
         return mauiAppBuilder;
     }
 }
