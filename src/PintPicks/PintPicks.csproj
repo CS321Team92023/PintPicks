@@ -54,6 +54,7 @@
 		<PackageReference Include="AWSSDK.S3" Version="3.7.103.29" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
 		<PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="7.0.0" />
+		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -71,6 +72,7 @@
 	  <None Remove="Resources\Splash\testSplash.svg" />
 	  <None Remove="Resources\Splash\clinkingbeer.svg" />
 	  <None Remove="Resources\Images\testbeerimage.png" />
+	  <None Remove="CommunityToolkit.Maui" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\FreedomFont.otf" />
