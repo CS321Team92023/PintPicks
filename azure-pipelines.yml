@@ -6,9 +6,6 @@
 trigger:
 - main
 
-variables:
-- group: Variable group 01 - keystore signing
-
 pool:
   vmImage: 'macos-latest'
   demands: xcode
@@ -18,7 +15,7 @@ steps:
   displayName: 'Install .NET sdk'
   inputs:
     packageType: sdk
-    version: 6.0.x
+    version: 7.0.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: CmdLine@2
@@ -26,11 +23,17 @@ steps:
   inputs:
     script: 'dotnet workload install maui'
 
+- task: DownloadSecureFile@1
+  name: keyStore
+  displayName: 'Download keystore file'
+  inputs:
+    secureFile: 'pintpicks.keystore'
+
 - task: DotNetCoreCLI@2
   inputs:
     command: 'build'
     projects: './src/PintPicks.sln'
-    arguments: ' -c Release -f:net6.0-android /p:AndroidKeyStore=True /p:AndroidKeyStore=.\key.keystore /p:AndroidSigningStorePass=$(variables.keystore-password) /p:AndroidSigningKeyAlias=$(variables.key-alias) /p:AndroidSigningKeyPass=$(variables.key-password)'
+    arguments: ' -c Release -f:net7.0-android /p:AndroidKeyStore=True /p:AndroidKeyStore=$(Agent.TempDirectory)\pintpicks.keystore /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyPass=$(AndroidSigningStorePass)'
 
 - task: CopyFiles@2
   inputs:
