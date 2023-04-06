@@ -15,10 +15,29 @@ steps:
   displayName: 'Install .NET sdk'
   inputs:
     packageType: sdk
-    version: 6.0.x
+    version: 7.0.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: CmdLine@2
   displayName: 'Install Maui Workload'
   inputs:
     script: 'dotnet workload install maui'
+
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'build'
+    projects: './src/PintPicks.sln'
+    arguments: ' -c Release -f:net7.0-android /p:AndroidKeyStore=True /p:AndroidKeyStore=.\key.keystore /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyPass=$(AndroidSigningStorePass)'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(Agent.builddirectory)'
+    Contents: '**/*-Signed.aab'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+    flattenFolders: true
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'drop'
+    publishLocation: 'Container'
