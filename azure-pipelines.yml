@@ -6,6 +6,9 @@
 trigger:
 - main
 
+variables:
+- group: Variable group 01 - keystore signing
+
 pool:
   vmImage: 'macos-latest'
   demands: xcode
@@ -15,7 +18,7 @@ steps:
   displayName: 'Install .NET sdk'
   inputs:
     packageType: sdk
-    version: 7.0.x
+    version: 6.0.x
     installationPath: $(Agent.ToolsDirectory)/dotnet
 
 - task: CmdLine@2
@@ -27,7 +30,7 @@ steps:
   inputs:
     command: 'build'
     projects: './src/PintPicks.sln'
-    arguments: ' -c Release -f:net7.0-android /p:AndroidKeyStore=True /p:AndroidKeyStore=.\key.keystore /p:AndroidSigningStorePass=$(AndroidSigningStorePass) /p:AndroidSigningKeyAlias=$(AndroidSigningKeyAlias) /p:AndroidSigningKeyPass=$(AndroidSigningStorePass)'
+    arguments: ' -c Release -f:net6.0-android /p:AndroidKeyStore=True /p:AndroidKeyStore=.\key.keystore /p:AndroidSigningStorePass=$(variables.keystore-password) /p:AndroidSigningKeyAlias=$(variables.key-alias) /p:AndroidSigningKeyPass=$(variables.key-password)'
 
 - task: CopyFiles@2
   inputs:
