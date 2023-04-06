@@ -3,6 +3,7 @@
     x:Class="PintPicks.View.Pages.DetailsPage"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
     xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.RatingView"
     xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
     Title="Detail View"
@@ -12,6 +13,9 @@
 
     <!--  Makes background gradient  -->
     <ContentPage.Resources>
+        <ResourceDictionary>
+            <toolkit:BoolToObjectConverter x:Key="BoolToObjectConverter" TrueObject="Yes" FalseObject="No" />
+        </ResourceDictionary>
         <LinearGradientBrush x:Key="DiagonalGradient" StartPoint="0,0" EndPoint="0,1">
             <GradientStop Offset="0" Color="#FFE072" />
             <GradientStop Offset="1" Color="#FFA93B" />
@@ -27,26 +31,33 @@
                 FontSize="45"
                 HorizontalOptions="Center"
                 Text="PintPicks"
-                VerticalOptions="Center" />
-            <!--  Puts logo on page  -->
+                Padding="0,10,0,0"
+                VerticalOptions="Center"
+            />
+            <!--Implements PintPicks logo-->
             <Image
                 HeightRequest="150"
                 Source="croppedbeerlogo.png"
-                WidthRequest="150" />
+                WidthRequest="150"
+            />
+            <!--Implements Pint Name-->
             <Label
-                Padding="0,35,0,20"
+                Padding="0,24,0,20"
                 FontAttributes="Bold"
                 FontFamily=""
                 FontSize="25"
                 HorizontalOptions="Center"
                 Text="{Binding Pint.Name}"
-                TextColor="Black" />
+                TextColor="Black"
+            />
+            <!--Will implement rating value-->
             <Label
                 Padding="0,0,0,10"
                 FontSize="17"
                 HorizontalOptions="Center"
                 Text="Overall Rating: 4.7/5.0"
-                TextColor="Black" />
+                TextColor="Black"
+            />
             <!--  Implements the rating system  -->
             <controls:RatingView
                 HorizontalOptions="Center"
@@ -58,7 +69,8 @@
                 StrokeColor="Black"
                 StrokeWidth="3"
                 UnRatedFillColor="White"
-                Value="5.1" />
+                Value="5.1"
+            />
             <!--  Adds padding between rating system and beer image  -->
             <Label Padding="10" />
             <!--  Implements the image of the beer/beer box  -->
@@ -92,68 +104,95 @@
                     <Label
                         Padding="25,30,0,0"
                         FontSize="17"
-                        Text="Alcohol by Volume (ABV): %x.y"
-                        TextColor="Black" />
+                        Text="{Binding Pint.ABV, StringFormat='Alcohol by Volume (ABV): {0}% ABV'}"
+                        TextColor="Black"
+                    />
                     <!--  Implements IBU view  -->
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="International Bitterness Units (IBU): x"
-                        TextColor="Black" />
+                        Text="{Binding Pint.IBU, StringFormat='International Bitterness Units (IBU): {0}'}"
+                        TextColor="Black"
+                    />
                     <!--  Implements Organic view  -->
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="Organic: Y/N"
-                        TextColor="Black" />
+                        Text="{Binding Pint.IsOrganic,Converter={StaticResource BoolToObjectConverter} ,StringFormat='Organic: {0}'}"
+                        TextColor="Black"
+                    />
                     <!--  Implements Retired view  -->
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="Retired: Y/N"
-                        TextColor="Black" />
+                        Text="{Binding Pint.IsRetired,Converter={StaticResource BoolToObjectConverter} ,StringFormat='Retired: {0}'}"
+                        TextColor="Black"
+                    />
                     <!--  Implements Description view  -->
                     <Label
-                        Padding="25,20,0,0"
+                        Padding="25,20,10,0"
                         FontSize="17"
                         Text="{Binding Pint.Description}"
-                        TextColor="Black" />
+                        TextColor="Black"
+                    />
                     <!--  Implements Style view  -->
                     <Label
+                        Padding="25,20,10,0"
+                        FontSize="17"
+                        Text="{Binding Pint.Style.Name, StringFormat='Beer Style: {0}'}"
+                        TextColor="Black"
+                    />
+                    <!--Implements ABV Ranges-->
+                    <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="{Binding Pint.Style.Name, StringFormat='Style of Beer: {0}'}"
+                        Text="{Binding Pint.Style.ABVMax, StringFormat='ABV Max: {0}'}"
                         TextColor="Black" />
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="ABV Max: x"
-                        TextColor="Black" />
+                        Text="{Binding Pint.Style.ABVMin, StringFormat='ABV Min: {0}'}"
+                        TextColor="Black"
+                    />
+                    <!--Implements FG Ranges-->
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="ABV Min: y"
-                        TextColor="Black" />
+                        Text="{Binding Pint.Style.FGMax, StringFormat='Final Gravity (fg) Max: {0}'}"
+                        TextColor="Black"
+                    />
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="fg Max: x"
-                        TextColor="Black" />
+                        Text="{Binding Pint.Style.FGMin, StringFormat='Final Gravity (fg) Min: {0}'}"
+                        TextColor="Black"
+                    />
+                    <!--Implements IBU Ranges-->
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="fg Min: y"
-                        TextColor="Black" />
+                        Text="{Binding Pint.Style.IBUMax, StringFormat='IBU Max: {0}'}"
+                        TextColor="Black"
+                    />
                     <Label
                         Padding="25,20,0,0"
                         FontSize="17"
-                        Text="IBU Max: x"
-                        TextColor="Black" />
+                        Text="{Binding Pint.Style.IBUMin, StringFormat='IBU Min: {0}'}"
+                        TextColor="Black"
+                    />
+                    <!--Implements SRM Ranges-->
                     <Label
-                        Padding="25,20,0,20"
                         FontSize="17"
-                        Text="IBU Min: y"
-                        TextColor="Black" />
+                        TextColor="Black"
+                        Padding="25,20,0,0"
+                        Text="{Binding Pint.Style.SRMMax, StringFormat='SRM Max: {0}'}"
+                    />
+                    <Label
+                        FontSize="17"
+                        TextColor="Black"
+                        Padding="25,20,0,25"
+                        Text="{Binding Pint.Style.SRMMax, StringFormat='SRM Min: {0}'}"
+                    />
                     <!--
                         More labels will go here to implement
                         the slider view for the attributes of the beer/beer style
@@ -162,13 +201,15 @@
                 </StackLayout>
             </Border>
 
-            <!--  Bottom of Page Slogan  -->
+            <!--Bottom of Page Slogan-->
             <Label
                 FontFamily="FreedomFont"
                 FontSize="20"
                 HorizontalTextAlignment="Center"
                 Text="The ultimate guide to the perfect pint!"
-                TextColor="Black" />
+                TextColor="Black"
+                Padding="0,10,0,10"
+            />
 
 
         </StackLayout>
