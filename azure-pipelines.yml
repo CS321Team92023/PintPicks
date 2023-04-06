@@ -10,7 +10,7 @@ pool:
   vmImage: windows-2022
 
 variables:
-- group: Variable group 01 - keystore signing
+- group: keystore-signing-variable-group
 
 steps:
 - task: UseDotNet@2
