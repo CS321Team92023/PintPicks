@@ -49,6 +49,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0-preview2" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="AWSSDK.S3" Version="3.7.103.29" />
 		<PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
@@ -81,13 +82,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\Maui.Controls.RatingView\Maui.Controls.RatingView.csproj" />
 	  <ProjectReference Include="..\PintPicks.Api.Client\PintPicks.Api.Client.csproj" />
-	  <ProjectReference Include="..\..\..\Maui.Controls.RatingView\src\Maui.Controls.RatingView\Maui.Controls.RatingView.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="View\Components\LoadingOverlayView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="View\Pages\PintListPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Styles\PintPicksStyles.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 
 	<ItemGroup>
-	  <MauiXaml Update="DetailsPage.xaml">
+	  <MauiXaml Update="View\Pages\DetailsPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
 	</ItemGroup>

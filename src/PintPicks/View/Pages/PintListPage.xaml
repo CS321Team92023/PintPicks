@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PintPicks.View.Pages.PintListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:PintPicks.Api.Contract;assembly=PintPicks.Api.Contract"
+    xmlns:ratings="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.RatingView"
+    xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
+    Title="{Binding Title}"
+    x:DataType="viewmodel:PintListPageViewModel"
+    Shell.NavBarIsVisible="True">
+    <Grid
+        Background="{StaticResource PintGradient}"
+        ColumnDefinitions="120,*"
+        ColumnSpacing="3"
+        RowDefinitions="60,*,Auto"
+        RowSpacing="0">
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="0"
+            FontAttributes="Bold"
+            HorizontalTextAlignment="Center"
+            Style="{StaticResource LargeLabel}"
+            Text="Sorting By:"
+            VerticalTextAlignment="Center" />
+
+        <StackLayout
+            Grid.Row="0"
+            Grid.Column="1"
+            Padding="10">
+            <Picker
+                x:Name="picker"
+                Title="Sorting By"
+                Background="white"
+                SelectedItem="{Binding SortBy}"
+                TextColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Rating</x:String>
+                        <x:String>Name</x:String>
+                        <x:String>ABV</x:String>
+                        <x:String>Style</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+        </StackLayout>
+        <CollectionView
+            Grid.Row="1"
+            Grid.ColumnSpan="2"
+            ItemsSource="{Binding SortedPints}"
+            SelectionMode="None">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Pint">
+                    <Grid Padding="10,5">
+                        <Frame HeightRequest="175" Style="{StaticResource CardView}">
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="PintItemTapped" />
+                            </Frame.GestureRecognizers>
+                            <Grid
+                                Padding="0"
+                                ColumnDefinitions="125,*"
+                                RowDefinitions="50,35,35,50">
+
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    Grid.ColumnSpan="2"
+                                    Padding="10"
+                                    FontAttributes="Bold"
+                                    Style="{StaticResource LargeLabel}"
+                                    Text="{Binding Name}" />
+
+                                <Image
+                                    Grid.Row="1"
+                                    Grid.RowSpan="3"
+                                    Grid.Column="0"
+                                    Aspect="AspectFill"
+                                    HeightRequest="120"
+                                    WidthRequest="120">
+                                    <Image.Source>
+                                        <UriImageSource CacheValidity="10:00:00:00" Uri="{Binding Images.Medium}" />
+                                    </Image.Source>
+                                </Image>
+
+                                <StackLayout
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Padding="10,0"
+                                    HorizontalOptions="Start"
+                                    Orientation="Horizontal"
+                                    VerticalOptions="Center">
+
+                                    <ratings:RatingView
+                                        HorizontalOptions="Start"
+                                        ItemCount="5"
+                                        ItemSize="16"
+                                        ItemSpacing="6"
+                                        RatedFillColor="Yellow"
+                                        StrokeColor="Black"
+                                        StrokeWidth="1"
+                                        UnRatedFillColor="LightGrey"
+                                        Value="4.3" />
+
+                                    <Label
+                                        Padding="10,0"
+                                        LineBreakMode="WordWrap"
+                                        Style="{StaticResource MediumLabel}"
+                                        Text="{Binding ABV, StringFormat='({0:F1})'}" />
+                                </StackLayout>
+
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Padding="10,0"
+                                    LineBreakMode="WordWrap"
+                                    Style="{StaticResource MediumLabel}"
+                                    Text="{Binding ABV, StringFormat='{0:F1}% ALC/VOL'}" />
+
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Padding="10,0"
+                                    LineBreakMode="WordWrap"
+                                    Style="{StaticResource MediumLabel}"
+                                    Text="{Binding Style.Name}" />
+                            </Grid>
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+</ContentPage>

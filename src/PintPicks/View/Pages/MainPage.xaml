@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="PintPicks.View.Pages.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:components="clr-namespace:PintPicks.View.Components"
+    xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
+    x:DataType="viewmodel:MainPageViewModel"
+    BackgroundColor="Transparent"
+    Shell.NavBarIsVisible="False">
+
+    <!--  Makes background gradient  -->
+    <ContentPage.Resources>
+        <Style TargetType="ImageButton">
+            <Setter Property="VisualStateManager.VisualStateGroups">
+                <VisualStateGroupList>
+                    <VisualStateGroup x:Name="CommonStates">
+                        <VisualState x:Name="Normal">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1" />
+                            </VisualState.Setters>
+                        </VisualState>
+                        <VisualState x:Name="Pressed">
+                            <VisualState.Setters>
+                                <Setter Property="Scale" Value="1.2" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateGroupList>
+            </Setter>
+        </Style>
+    </ContentPage.Resources>
+
+
+    <Grid
+        ColumnDefinitions="*,*"
+        ColumnSpacing="5"
+        RowDefinitions="*,Auto"
+        RowSpacing="0">
+
+        <StackLayout
+            Grid.ColumnSpan="2"
+            Background="{StaticResource PintGradient}"
+            Orientation="Vertical">
+
+            <Label
+                FontFamily="FreedomFont"
+                FontSize="45"
+                HorizontalTextAlignment="Center"
+                Text="PintPicks"
+                TextColor="Black" />
+            <!--  Adds logo to top of screen  -->
+            <Image
+                Aspect="AspectFit"
+                HeightRequest="150"
+                Source="croppedbeerlogo.png"
+                WidthRequest="150" />
+
+            <!--  Creates button and calls clicking method  -->
+            <ImageButton
+                x:Name="imageButton"
+                Command="{Binding ChoosePictureCommand}"
+                HeightRequest="250"
+                Source="choosepicturebutton.png"
+                WidthRequest="250" />
+            <!--  Creates button and calls clicking method  -->
+            <ImageButton
+                x:Name="imageButton2"
+                Margin="-35"
+                Command="{Binding TakePictureCommand}"
+                HeightRequest="250"
+                Source="takepicturebutton.png"
+                WidthRequest="250" />
+            <!--  Adds slogan to bottom of page  -->
+            <Label
+                Margin="70"
+                FontFamily="FreedomFont"
+                FontSize="20"
+                HorizontalTextAlignment="Center"
+                Text="The ultimate guide to the perfect pint!"
+                TextColor="Black" />
+
+        </StackLayout>
+
+        <components:LoadingOverlayView
+            Grid.RowSpan="2"
+            Grid.ColumnSpan="2"
+            IsRunning="True"
+            IsVisible="{Binding IsBusy}"
+            LoadingText="Analyzing Pints..." />
+    </Grid>
+</ContentPage>
