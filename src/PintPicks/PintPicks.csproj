@@ -70,6 +70,7 @@
 	  <None Remove="Resources\Splash\testsvgsplash.svg" />
 	  <None Remove="Resources\Splash\testSplash.svg" />
 	  <None Remove="Resources\Splash\clinkingbeer.svg" />
+	  <None Remove="Resources\Images\testbeerimage.png" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\FreedomFont.otf" />
@@ -77,11 +78,13 @@
 	  <BundleResource Include="Resources\Images\takepicturebutton.png" />
 	  <BundleResource Include="Resources\Images\choosepicturebutton.png" />
 	  <BundleResource Include="Resources\Splash\clinkingbeer.svg" />
+	  <BundleResource Include="Resources\Images\testbeerimage.png" />
 	</ItemGroup>
 
 	<ItemGroup>
 	  <ProjectReference Include="..\Maui.Controls.RatingView\Maui.Controls.RatingView.csproj" />
 	  <ProjectReference Include="..\PintPicks.Api.Client\PintPicks.Api.Client.csproj" />
+	  <ProjectReference Include="..\..\..\Maui.Controls.RatingView\src\Maui.Controls.RatingView\Maui.Controls.RatingView.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -97,4 +100,9 @@
 	</ItemGroup>
 
 
+	<ItemGroup>
+	  <MauiXaml Update="DetailsPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
 </Project>
