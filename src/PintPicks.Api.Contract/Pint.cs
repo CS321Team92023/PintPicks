@@ -5,37 +5,47 @@ namespace PintPicks.Api.Contract
     public class Pint
     {
         [JsonProperty("name")]
+        [System.Text.Json.Serialization.JsonPropertyName("name")]
         public string Name { get; set; }
 
         [JsonProperty("nameDisplay")]
+        [System.Text.Json.Serialization.JsonPropertyName("nameDisplay")]
         public string NameDisplay { get; set; }
 
         [JsonProperty("description")]
+        [System.Text.Json.Serialization.JsonPropertyName("description")]
         public string Description { get; set; }
 
         [JsonProperty("abv")]
+        [System.Text.Json.Serialization.JsonPropertyName("abv")]
         public float ABV { get; set; }
 
         [JsonProperty("available")]
+        [System.Text.Json.Serialization.JsonPropertyName("available")]
         public PintAvailability Available { get; set; }
 
         [JsonProperty("ibu")]
+        [System.Text.Json.Serialization.JsonPropertyName("ibu")]
         public float IBU { get; set; }
 
         [JsonProperty("isOrganic")]
+        [System.Text.Json.Serialization.JsonPropertyName("isOrganic")]
         [System.Text.Json.Serialization.JsonConverter(typeof(YesNoBoolConverter))]
         [JsonConverter(typeof(YesNoBoolNewtonsoftConverter))]
         public bool IsOrganic { get; set; }
 
         [JsonProperty("isRetired")]
+        [System.Text.Json.Serialization.JsonPropertyName("isRetired")]
         [System.Text.Json.Serialization.JsonConverter(typeof(YesNoBoolConverter))]
         [JsonConverter(typeof(YesNoBoolNewtonsoftConverter))]
         public bool IsRetired { get; set; }
 
         [JsonProperty("labels")]
+        [System.Text.Json.Serialization.JsonPropertyName("labels")]
         public PintImages Images { get; set; }
 
         [JsonProperty("style")]
+        [System.Text.Json.Serialization.JsonPropertyName("style")]
         public PintStyle Style { get; set; }
     }
 
