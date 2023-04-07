@@ -35,7 +35,7 @@
 	</PropertyGroup>
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+		
 
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\clinkingbeer.svg" Color="#FFA93B" />
@@ -57,6 +57,11 @@
 		<PackageReference Include="CommunityToolkit.Maui" Version="5.0.0" />
 	</ItemGroup>
 
+	<!--Implements updated App Icon with logo -->
+	<ItemGroup>
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" />
+	</ItemGroup>
+
 	<ItemGroup>
 
 	  <None Remove="Resources\Fonts\FreedomFont.otf" />
@@ -73,6 +78,10 @@
 	  <None Remove="Resources\Splash\clinkingbeer.svg" />
 	  <None Remove="Resources\Images\testbeerimage.png" />
 	  <None Remove="CommunityToolkit.Maui" />
+	  <None Remove="Resources\AppIcon\" />
+	  <None Remove="Resources\AppIcon\appicon.svg" />
+	  <None Remove="Resources\AppIcon\appiconfg.svg" />
+	  <None Remove="Resources\AppIcon\appicon.svg" />
 	</ItemGroup>
 	<ItemGroup>
 	  <BundleResource Include="Resources\Fonts\FreedomFont.otf" />
@@ -81,6 +90,8 @@
 	  <BundleResource Include="Resources\Images\choosepicturebutton.png" />
 	  <BundleResource Include="Resources\Splash\clinkingbeer.svg" />
 	  <BundleResource Include="Resources\Images\testbeerimage.png" />
+	  <BundleResource Include="Resources\AppIcon\appicon.svg" />
+	  <BundleResource Include="Resources\AppIcon\appiconfg.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -105,5 +116,8 @@
 	  <MauiXaml Update="View\Pages\DetailsPage.xaml">
 	    <SubType></SubType>
 	  </MauiXaml>
+	</ItemGroup>
+	<ItemGroup>
+	  <Folder Include="Resources\AppIcon\" />
 	</ItemGroup>
 </Project>
