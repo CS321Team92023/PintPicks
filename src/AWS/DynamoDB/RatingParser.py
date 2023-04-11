@@ -8,8 +8,7 @@ from decimal import *
 #Takes in a csv file and a line number to start reading from
 def exportToDynamoDB(csv_file, start_line):
     #Set up DynamoDB client
-    dynamodb = boto3.resource(service_name = 'dynamodb', region_name='us-east-1', aws_access_key_id='AKIAVFY5HTAZGTSGIUES', aws_secret_access_key='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')
-
+    dynamodb = boto3.resource('dynamodb')
     #Set up table
     table = dynamodb.Table('beer_ratings')
     print("Now exporting the data to the database!")
@@ -37,24 +36,47 @@ def exportToDynamoDB(csv_file, start_line):
             hash_value = hashlib.sha256(string_to_hash.encode('utf-8')).hexdigest()
             #Convert row to dictionary
             item = row.to_dict()
-            item['review_overall'] = Decimal(str(row['review_overall']))
-            item['review_aroma'] = Decimal(str(row['review_aroma']))
-            item['review_appearance'] = Decimal(str(row['review_appearance']))
-            item['review_palate'] = Decimal(str(row['review_palate']))
-            item['review_taste'] = Decimal(str(row['review_taste']))
-            item['beer_abv'] = Decimal(str(row['beer_abv']))
+
+            if pd.isnull(row['review_overall']):
+                del item['review_overall']
+            else:
+                item['review_overall'] = Decimal(str(row['review_overall']))
+                
+            if pd.isnull(row['review_aroma']):
+                del item['review_aroma']
+            else:
+                item['review_aroma'] = Decimal(str(row['review_aroma']))
+                
+            if pd.isnull(row['review_appearance']):
+                del item['review_appearance']
+            else:
+                item['review_appearance'] = Decimal(str(row['review_appearance']))
+                
+            if pd.isnull(row['review_palate']):
+                del item['review_palate']
+            else:
+                item['review_palate'] = Decimal(str(row['review_palate']))
+                
+            if pd.isnull(row['review_taste']):
+                del item['review_taste']
+            else:
+                item['review_taste'] = Decimal(str(row['review_taste']))
+
+            if pd.isnull(row['beer_abv']):
+                del item['beer_abv']
+            else:
+                item['beer_abv'] = Decimal(str(row['beer_abv']))
 
             #Add partition key to item
             item['PartitionKey'] = hash_value
             #Add item to batch writer
-            #print(item)
             batch.put_item(Item=item)
             #Updates current line and writes it to a file
             current_line += 1
             with open('line_count.txt', 'w') as line_file:
                     line_file.write(str(current_line))
 
-        print("Done!")
+    print("Done!")
 
 
 exportToDynamoDB('beer_reviews.csv', 819)
