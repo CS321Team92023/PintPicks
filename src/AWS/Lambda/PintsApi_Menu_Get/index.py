@@ -61,29 +61,47 @@ def lambda_handler(event, context):
    pints = []
    
    client = boto3.resource('dynamodb')
-   table = client.Table('pints')
+   pintTable = client.Table('pints')
+   ratingTable = client.Table('beer_ratings')
    for line in lines:
       
-      lineDbResult = table.query(
+      # index queries
+      # these can't be done on a batch-get because dynamodb does not support batch gets on indexes
+      lineDbResult = pintTable.query(
          IndexName='name-index',
          KeyConditionExpression=Key('name').eq(line),
+      )
+      ratingsResult = ratingTable.query(
+         IndexName='beer_name-index',
+         KeyConditionExpression=Key('beer_name').eq(line),
       )
 
       if 'Items' in lineDbResult:
          for indexedItem in lineDbResult['Items']:
             
-            itemObjectResponse = table.get_item(
+            #get the pint
+            itemObjectResponse = pintTable.get_item(
                Key= {'id': indexedItem['id']}
             )
             retrievedPint = itemObjectResponse['Item']
+
+            #get ratings
+            if ratingsResult['Count'] > 0:
+               batch_keys = {
+                  ratingTable.name: {
+                     'Keys': [{'PartitionKey': indexedRating['PartitionKey']} for indexedRating in ratingsResult['Items']]
+                  }
+               }
+               ratingsResponse = client.batch_get_item(RequestItems=batch_keys)
+               if 'Responses' in ratingsResponse:
+                  ratings = ratingsResponse['Responses'][ratingTable.name]
+                  retrievedPint['ratings'] = ratings
+
             pints.append(retrievedPint)
+
+            # only process the first match of name
+            # because we don't have information about brewery on pints
+            # we cannot differentiate different beers with the same name from different breweries
             break
           
    return pints
-
-   #return {
-   #   'statusCode': '404',
-   #   'body': 'Not found'
-   #}
-       
-       
