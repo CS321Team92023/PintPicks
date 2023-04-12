@@ -67,6 +67,19 @@ def exportToDynamoDB(csv_file, start_line):
             else:
                 item['beer_abv'] = Decimal(str(row['beer_abv']))
 
+            # if any of these values is null then we will have an exception
+            # so remove them
+            if pd.isnull(row['brewery_id']):
+                del item['brewery_id']
+            if pd.isnull(row['brewery_name']):
+                del item['brewery_name']
+            if pd.isnull(row['beer_style']):
+                del item['beer_style']
+            if pd.isnull(row['beer_name']):
+                del item['beer_name']
+            if pd.isnull(row['review_profilename']):
+                del item['review_profilename']
+
             #Add partition key to item
             item['PartitionKey'] = hash_value
             #Add item to batch writer
