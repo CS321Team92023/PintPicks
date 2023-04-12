@@ -47,6 +47,10 @@ namespace PintPicks.Api.Contract
         [JsonProperty("style")]
         [System.Text.Json.Serialization.JsonPropertyName("style")]
         public PintStyle Style { get; set; }
+
+        [JsonProperty("ratings")]
+        [System.Text.Json.Serialization.JsonPropertyName("ratings")]
+        public IEnumerable<PintRating> Ratings { get; set; }
     }
 
     public class YesNoBoolConverter : System.Text.Json.Serialization.JsonConverter<bool>
