@@ -9,7 +9,8 @@
     BackgroundColor="Transparent"
     Shell.NavBarIsVisible="False">
 
-    <!--  Makes background gradient  -->
+
+    <!--Implements gradient background and button animation-->
     <ContentPage.Resources>
         <Style TargetType="ImageButton">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -48,6 +49,7 @@
                 FontSize="45"
                 HorizontalTextAlignment="Center"
                 Text="PintPicks"
+                Padding="0,10,0,0"
                 TextColor="Black" />
             <!--  Adds logo to top of screen  -->
             <Image
