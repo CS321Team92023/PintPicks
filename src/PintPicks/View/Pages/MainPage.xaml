@@ -56,7 +56,7 @@
                 Aspect="AspectFit"
                 HeightRequest="150"
                 Source="croppedbeerlogo.png"
-                WidthRequest="150" />
+                WidthRequest="150"/>
 
             <!--  Creates button and calls clicking method  -->
             <ImageButton
