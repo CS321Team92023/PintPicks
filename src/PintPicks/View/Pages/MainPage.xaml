@@ -7,9 +7,11 @@
     xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
     x:DataType="viewmodel:MainPageViewModel"
     BackgroundColor="Transparent"
-    Shell.NavBarIsVisible="False">
+    Shell.BackgroundColor="{StaticResource NavBarColor}"
+    Shell.NavBarIsVisible="True">
 
-    <!--  Makes background gradient  -->
+
+    <!--Implements gradient background and button animation-->
     <ContentPage.Resources>
         <Style TargetType="ImageButton">
             <Setter Property="VisualStateManager.VisualStateGroups">
@@ -48,13 +50,14 @@
                 FontSize="45"
                 HorizontalTextAlignment="Center"
                 Text="PintPicks"
+                Padding="0,10,0,0"
                 TextColor="Black" />
             <!--  Adds logo to top of screen  -->
             <Image
                 Aspect="AspectFit"
                 HeightRequest="150"
                 Source="croppedbeerlogo.png"
-                WidthRequest="150" />
+                WidthRequest="150"/>
 
             <!--  Creates button and calls clicking method  -->
             <ImageButton
