@@ -7,7 +7,8 @@
     xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
     x:DataType="viewmodel:MainPageViewModel"
     BackgroundColor="Transparent"
-    Shell.NavBarIsVisible="False">
+    Shell.BackgroundColor="{StaticResource NavBarColor}"
+    Shell.NavBarIsVisible="True">
 
 
     <!--Implements gradient background and button animation-->
