@@ -14,7 +14,7 @@ def exportToDynamoDB(csv_file, start_line):
     print("Now exporting the data to the database!")
 
     #Read CSV file into Pandas DataFrame, Skips to specified start line
-    df = pd.read_csv(csv_file, skiprows=start_line, names=['brewery_id', 'brewery_name', 'review_time', 'review_overall',
+    df = pd.read_csv(csv_file, names=['brewery_id', 'brewery_name', 'review_time', 'review_overall',
                                       'review_aroma', 'review_appearance', 'review_profilename', 'beer_style',
                                       'review_palate', 'review_taste', 'beer_name', 'beer_abv', 'beer_beerid'],
                      header=0)
@@ -24,10 +24,10 @@ def exportToDynamoDB(csv_file, start_line):
     current_line = start_line   
 
     #Use batch writer for more efficient writes
-    with table.batch_writer() as batch:
+    with table.batch_writer(overwrite_by_pkeys=['PartitionKey']) as batch:
         #Iterate over rows in DataFrame
-        for index, row in df.iloc[current_line:].iterrows():
-            print('processing line: ', current_line)
+        for index, row in df.iloc[start_line:].iterrows():
+            print('processing line: ', index)
             #Sleep for 0.5 seconds to ensure we do not blow our throuput allowance
             time.sleep(100/1000) 
             #Concatenate beer_name and review_time columns
@@ -85,9 +85,9 @@ def exportToDynamoDB(csv_file, start_line):
             #Add item to batch writer
             batch.put_item(Item=item)
             #Updates current line and writes it to a file
-            current_line += 1
             with open('line_count.txt', 'w') as line_file:
                     line_file.write(str(current_line))
+            current_line = index
 
     print("Done!")
 
