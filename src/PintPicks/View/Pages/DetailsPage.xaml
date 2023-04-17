@@ -55,7 +55,7 @@
                 Padding="0,0,0,10"
                 FontSize="17"
                 HorizontalOptions="Center"
-                Text="Overall Rating: 4.7/5.0"
+                Text="{Binding OverallRating, StringFormat='Overall Rating: {0:F1}/5'}"
                 TextColor="Black"
             />
             <!--  Implements the rating system  -->
@@ -69,7 +69,7 @@
                 StrokeColor="Black"
                 StrokeWidth="3"
                 UnRatedFillColor="White"
-                Value="5.1"
+                Value="{Binding OverallRating}"
             />
             <!--  Adds padding between rating system and beer image  -->
             <Label Padding="10" />

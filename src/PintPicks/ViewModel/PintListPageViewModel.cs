@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using PintPicks.Api.Contract;
 using PintPicks.View.Pages;
 using System.Collections.ObjectModel;
+using System.Linq;
 
 namespace PintPicks.ViewModel
 {
@@ -14,7 +15,7 @@ namespace PintPicks.ViewModel
         ObservableCollection<Pint> pints;
 
 
-        public ObservableCollection<Pint> SortedPints 
+        public ObservableCollection<DetailsPageViewModel> SortedPints 
         { 
             get
             {
@@ -22,16 +23,16 @@ namespace PintPicks.ViewModel
                 {
                     return null;
                 }
-                IEnumerable<Pint> sortedData = Pints.ToList();
+                IEnumerable<DetailsPageViewModel> sortedData = Pints.ToList().Select(d => new DetailsPageViewModel(d));
                 sortedData = SortBy switch
                 {
-                    //"Rating" => pints.ToList().OrderBy(p => 4.7),
-                    "Name" => sortedData.OrderBy(p => p.Name),
-                    "ABV" => sortedData.OrderBy(p => p.ABV),
-                    "Style" => sortedData.OrderBy(p => p.Style?.Name),
+                    "Rating" => sortedData.OrderBy(p => p.OverallRating),
+                    "Name" => sortedData.OrderBy(p => p.Pint?.Name),
+                    "ABV" => sortedData.OrderBy(p => p.Pint?.ABV),
+                    "Style" => sortedData.OrderBy(p => p.Pint?.Style?.Name),
                     _ => sortedData
                 };
-                return new ObservableCollection<Pint>(sortedData);
+                return new ObservableCollection<DetailsPageViewModel>(sortedData);
             }
         }
 
