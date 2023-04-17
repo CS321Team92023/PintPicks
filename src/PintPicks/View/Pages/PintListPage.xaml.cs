@@ -15,7 +15,7 @@ public partial class PintListPage : ContentPage
 
     private async void PintItemTapped(object sender, TappedEventArgs e)
     {
-        var pint = ((VisualElement)sender).BindingContext as Pint;
+        var pint = ((VisualElement)sender).BindingContext as DetailsPageViewModel;
         if (pint == null)
         {
             return;
@@ -23,7 +23,7 @@ public partial class PintListPage : ContentPage
 
         await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object> {
         {
-            "Pint", pint
+            "Pint", pint.Pint
         } });
     }
 }

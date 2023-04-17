@@ -55,7 +55,7 @@
                 Padding="0,0,0,10"
                 FontSize="17"
                 HorizontalOptions="Center"
-                Text="Overall Rating: 4.7/5.0"
+                Text="{Binding OverallRating, StringFormat='Overall Rating: {0:F1}/5'}"
                 TextColor="Black"
             />
             <!--  Implements the rating system  -->
@@ -69,7 +69,7 @@
                 StrokeColor="Black"
                 StrokeWidth="3"
                 UnRatedFillColor="White"
-                Value="5.1"
+                Value="{Binding OverallRating}"
             />
             <!--  Adds padding between rating system and beer image  -->
             <Label Padding="10" />
@@ -103,92 +103,92 @@
                     <!--  Implements ABV view  -->
                     <Label
                         Padding="25,30,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.ABV, StringFormat='Alcohol by Volume (ABV): {0}% ABV'}"
                         TextColor="Black"
                     />
                     <!--  Implements IBU view  -->
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.IBU, StringFormat='International Bitterness Units (IBU): {0}'}"
                         TextColor="Black"
                     />
                     <!--  Implements Organic view  -->
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.IsOrganic,Converter={StaticResource BoolToObjectConverter} ,StringFormat='Organic: {0}'}"
                         TextColor="Black"
                     />
                     <!--  Implements Retired view  -->
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.IsRetired,Converter={StaticResource BoolToObjectConverter} ,StringFormat='Retired: {0}'}"
                         TextColor="Black"
                     />
                     <!--  Implements Description view  -->
                     <Label
                         Padding="25,20,10,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Description}"
                         TextColor="Black"
                     />
                     <!--  Implements Style view  -->
                     <Label
                         Padding="25,20,10,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.Name, StringFormat='Beer Style: {0}'}"
                         TextColor="Black"
                     />
                     <!--Implements ABV Ranges-->
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.ABVMax, StringFormat='ABV Max: {0}'}"
                         TextColor="Black" />
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.ABVMin, StringFormat='ABV Min: {0}'}"
                         TextColor="Black"
                     />
                     <!--Implements FG Ranges-->
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.FGMax, StringFormat='Final Gravity (fg) Max: {0}'}"
                         TextColor="Black"
                     />
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.FGMin, StringFormat='Final Gravity (fg) Min: {0}'}"
                         TextColor="Black"
                     />
                     <!--Implements IBU Ranges-->
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.IBUMax, StringFormat='IBU Max: {0}'}"
                         TextColor="Black"
                     />
                     <Label
                         Padding="25,20,0,0"
-                        FontSize="17"
+                        FontSize="16"
                         Text="{Binding Pint.Style.IBUMin, StringFormat='IBU Min: {0}'}"
                         TextColor="Black"
                     />
                     <!--Implements SRM Ranges-->
                     <Label
-                        FontSize="17"
+                        FontSize="16"
                         TextColor="Black"
                         Padding="25,20,0,0"
                         Text="{Binding Pint.Style.SRMMax, StringFormat='SRM Max: {0}'}"
                     />
                     <Label
-                        FontSize="17"
+                        FontSize="16"
                         TextColor="Black"
                         Padding="25,20,0,25"
                         Text="{Binding Pint.Style.SRMMax, StringFormat='SRM Min: {0}'}"

@@ -52,7 +52,7 @@
             ItemsSource="{Binding SortedPints}"
             SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="model:Pint">
+                <DataTemplate x:DataType="viewmodel:DetailsPageViewModel">
                     <Grid Padding="10,5">
                         <Frame HeightRequest="175" Style="{StaticResource CardView}">
                             <Frame.GestureRecognizers>
@@ -70,7 +70,7 @@
                                     Padding="10"
                                     FontAttributes="Bold"
                                     Style="{StaticResource LargeLabel}"
-                                    Text="{Binding Name}" />
+                                    Text="{Binding PintName}" />
 
                                 <Image
                                     Grid.Row="1"
@@ -80,7 +80,7 @@
                                     HeightRequest="120"
                                     WidthRequest="120">
                                     <Image.Source>
-                                        <UriImageSource CacheValidity="10:00:00:00" Uri="{Binding Images.Medium}" />
+                                        <UriImageSource CacheValidity="10:00:00:00" Uri="{Binding Pint.Images.Medium}" />
                                     </Image.Source>
                                 </Image>
 
@@ -95,19 +95,20 @@
                                     <ratings:RatingView
                                         HorizontalOptions="Start"
                                         ItemCount="5"
-                                        ItemSize="16"
-                                        ItemSpacing="6"
-                                        RatedFillColor="Yellow"
+                                        ItemSize="18"
+                                        ItemSpacing="10"
+                                        RatedFillColor="DarkOrange"
+                                        ShapePath="m179.638,90.081c-7.693-6.157-11.276-15.514-11.276-29.446v-17.635h11.527v-43h-93v43h11.527v17.635c0,14.874-3.073,23.681-10.276,29.446-19.44,15.559-27.369,31.983-27.369,56.692v100.088c0,10.981 8.934,19.916 19.915,19.916h105.405c10.981,0 19.916-8.935 19.916-19.916v-100.088c0-22.616-9.611-43.28-26.369-56.692z"
                                         StrokeColor="Black"
-                                        StrokeWidth="1"
-                                        UnRatedFillColor="LightGrey"
-                                        Value="4.3" />
+                                        StrokeWidth="3"
+                                        UnRatedFillColor="White"
+                                        Value="{Binding OverallRating}" />
 
                                     <Label
                                         Padding="10,0"
                                         LineBreakMode="WordWrap"
                                         Style="{StaticResource MediumLabel}"
-                                        Text="{Binding ABV, StringFormat='({0:F1})'}" />
+                                        Text="{Binding OverallRating, StringFormat='({0:F1})'}" />
                                 </StackLayout>
 
                                 <Label
@@ -116,7 +117,7 @@
                                     Padding="10,0"
                                     LineBreakMode="WordWrap"
                                     Style="{StaticResource MediumLabel}"
-                                    Text="{Binding ABV, StringFormat='{0:F1}% ALC/VOL'}" />
+                                    Text="{Binding Pint.ABV, StringFormat='{0:F1}% ALC/VOL'}" />
 
                                 <Label
                                     Grid.Row="3"
@@ -124,7 +125,7 @@
                                     Padding="10,0"
                                     LineBreakMode="WordWrap"
                                     Style="{StaticResource MediumLabel}"
-                                    Text="{Binding Style.Name}" />
+                                    Text="{Binding Pint.Style.Name}" />
                             </Grid>
                         </Frame>
                     </Grid>
