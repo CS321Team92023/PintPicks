@@ -69,7 +69,7 @@
                 StrokeColor="Black"
                 StrokeWidth="3"
                 UnRatedFillColor="White"
-                Value="{Binding OverallRating}"
+                Value="{Binding OffsetOveralRating}"
             />
             <!--  Adds padding between rating system and beer image  -->
             <Label Padding="10" />

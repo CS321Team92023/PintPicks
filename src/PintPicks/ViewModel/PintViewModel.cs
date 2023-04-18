@@ -30,7 +30,9 @@ namespace PintPicks.ViewModel
             this.pint = pint;
         }
 
-       
+
+        public float OffsetOveralRating => OverallRating + 0.4f;
+
         public float OverallRating {
             get {
                 if (Pint == null || Pint.Ratings == null)
@@ -40,7 +42,7 @@ namespace PintPicks.ViewModel
                     .DefaultIfEmpty(0)
                     .Average();
 
-                return averageRating + 0.4f;
+                return averageRating;
             }
         }
 

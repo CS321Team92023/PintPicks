@@ -115,7 +115,7 @@
                                         StrokeColor="Black"
                                         StrokeWidth="3"
                                         UnRatedFillColor="White"
-                                        Value="{Binding OverallRating}" />
+                                        Value="{Binding OffsetOveralRating}" />
 
                                     <Label
                                         Padding="10,0"
