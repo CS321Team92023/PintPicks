@@ -1,11 +1,12 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using PintPicks.Api.Contract;
+using Rating = PintPicks.Api.Contract.PintRating;
 using PintModel = PintPicks.Api.Contract.Pint;
+using System.Linq;
 
 namespace PintPicks.ViewModel
 {
     [QueryProperty(nameof(Pint), "Pint")]
-    public partial class DetailsPageViewModel : BaseViewModel
+    public partial class PintViewModel : BaseViewModel
     {
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(PintName))]
@@ -18,14 +19,14 @@ namespace PintPicks.ViewModel
         }
 
         //Gets ratings array
-        public IEnumerable<PintRating> Ratings
+        public IEnumerable<Rating> Ratings
         {
             get => Pint?.Ratings;
         }
 
 
-        public DetailsPageViewModel(){}
-        public DetailsPageViewModel(PintModel pint) {
+        public PintViewModel(){}
+        public PintViewModel(PintModel pint) {
             this.pint = pint;
         }
 
@@ -33,19 +34,13 @@ namespace PintPicks.ViewModel
         public float OverallRating {
             get {
                 if (Pint == null || Pint.Ratings == null)
-                {
                     return 0;
-                }
-                IEnumerable<PintRating> Ratings = Pint?.Ratings;
-                float count = 0;
-                int num = 0;
-                foreach (PintRating rating in Ratings)
-                {
-                    count += rating.ReviewOverall;
-                    num += 1;
-                }
-                float averageRating = (count / num) + 0.5f;
-                return averageRating;
+
+                float averageRating = Pint.Ratings.Select(rating => rating.ReviewOverall)
+                    .DefaultIfEmpty(0)
+                    .Average();
+
+                return averageRating + 0.4f;
             }
         }
 

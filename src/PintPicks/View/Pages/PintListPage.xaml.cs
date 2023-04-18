@@ -11,19 +11,4 @@ public partial class PintListPage : ContentPage
 		InitializeComponent();
         BindingContext = viewModel;
 	}
-
-
-    private async void PintItemTapped(object sender, TappedEventArgs e)
-    {
-        var pint = ((VisualElement)sender).BindingContext as DetailsPageViewModel;
-        if (pint == null)
-        {
-            return;
-        }
-
-        await Shell.Current.GoToAsync(nameof(DetailsPage), true, new Dictionary<string, object> {
-        {
-            "Pint", pint.Pint
-        } });
-    }
 }

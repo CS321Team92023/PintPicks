@@ -4,7 +4,7 @@ using PintPicks.ViewModel;
 public partial class DetailsPage : ContentPage
 {
 
-    public DetailsPage(DetailsPageViewModel viewModel)
+    public DetailsPage(PintViewModel viewModel)
     {
         InitializeComponent();
         BindingContext = viewModel;
