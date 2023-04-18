@@ -40,7 +40,7 @@ namespace PintPicks.ViewModel
                     .DefaultIfEmpty(0)
                     .Average();
 
-                return averageRating + 0.5f;
+                return averageRating + 0.4f;
             }
         }
 
