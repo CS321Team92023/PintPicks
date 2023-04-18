@@ -19,7 +19,7 @@
                 HorizontalOptions="Center"
                 IsRunning="True"
                 VerticalOptions="Center"
-                Color="{StaticResource Primary}" />
+                Color="DarkOrange" />
             <Label Text="Analyzing menu..." TextColor="White" />
         </StackLayout>
     </Grid>

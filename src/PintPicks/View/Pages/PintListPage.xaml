@@ -6,13 +6,14 @@
     xmlns:model="clr-namespace:PintPicks.Api.Contract;assembly=PintPicks.Api.Contract"
     xmlns:ratings="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.RatingView"
     xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
+    x:Name="ListPage"
     Title="{Binding Title}"
     x:DataType="viewmodel:PintListPageViewModel"
     Shell.BackgroundColor="{StaticResource NavBarColor}"
     Shell.NavBarIsVisible="True">
     <Grid
         Background="{StaticResource PintGradient}"
-        ColumnDefinitions="120,*"
+        ColumnDefinitions="120,*,60"
         ColumnSpacing="3"
         RowDefinitions="60,*,Auto"
         RowSpacing="0">
@@ -46,17 +47,29 @@
                 </Picker.ItemsSource>
             </Picker>
         </StackLayout>
+        <Button
+            Grid.Row="0"
+            Grid.Column="2"
+            BackgroundColor="Transparent"
+            FontAttributes="Bold"
+            HorizontalOptions="Start"
+            Text="{Binding SortOrderDisplay}"
+            TextColor="DarkOrange">
+            <Button.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding AscDescButtonTappedCommand}" />
+            </Button.GestureRecognizers>
+        </Button>
         <CollectionView
             Grid.Row="1"
-            Grid.ColumnSpan="2"
+            Grid.ColumnSpan="3"
             ItemsSource="{Binding SortedPints}"
             SelectionMode="None">
             <CollectionView.ItemTemplate>
-                <DataTemplate x:DataType="viewmodel:DetailsPageViewModel">
+                <DataTemplate x:DataType="viewmodel:PintViewModel">
                     <Grid Padding="10,5">
                         <Frame HeightRequest="175" Style="{StaticResource CardView}">
                             <Frame.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="PintItemTapped" />
+                                <TapGestureRecognizer Command="{Binding BindingContext.PintTappedCommand, Source={x:Reference ListPage}}" CommandParameter="{Binding}" />
                             </Frame.GestureRecognizers>
                             <Grid
                                 Padding="0"

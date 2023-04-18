@@ -4,6 +4,7 @@ using PintPicks.Api.Client;
 using PintPicks.View.Pages;
 using PintPicks.Services;
 using PintPicks.ViewModel;
+using CommunityToolkit.Maui;
 
 namespace PintPicks;
 
@@ -16,6 +17,7 @@ public static class MauiProgram
             .RegisterAppServices()
             .RegisterViewModels()
             .RegisterPages()
+            .UseMauiCommunityToolkit()
             .ConfigureFonts(fonts =>
 			{
 				fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
@@ -42,7 +44,7 @@ public static class MauiProgram
     {
         mauiAppBuilder.Services.AddTransient<MainPageViewModel>();
         mauiAppBuilder.Services.AddTransient<PintListPageViewModel>();
-        mauiAppBuilder.Services.AddTransient<DetailsPageViewModel>();
+        mauiAppBuilder.Services.AddTransient<PintViewModel>();
         return mauiAppBuilder;
     }
 

@@ -7,7 +7,7 @@
     xmlns:controls="clr-namespace:XGENO.Maui.Controls;assembly=Maui.Controls.RatingView"
     xmlns:viewmodel="clr-namespace:PintPicks.ViewModel"
     Title="Detail View"
-    x:DataType="viewmodel:DetailsPageViewModel"
+    x:DataType="viewmodel:PintViewModel"
     Shell.BackgroundColor="{StaticResource NavBarColor}"
     Shell.NavBarIsVisible="True">
 
