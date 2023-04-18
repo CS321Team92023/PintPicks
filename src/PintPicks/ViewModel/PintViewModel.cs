@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using Rating = PintPicks.Api.Contract.PintRating;
 using PintModel = PintPicks.Api.Contract.Pint;
+using System.Linq;
 
 namespace PintPicks.ViewModel
 {
@@ -33,21 +34,13 @@ namespace PintPicks.ViewModel
         public float OverallRating {
             get {
                 if (Pint == null || Pint.Ratings == null)
-                {
                     return 0;
-                }
-                IEnumerable<Rating> Ratings = Pint?.Ratings;
-                float count = 0;
-                int num = 0;
-                foreach (Rating rating in Ratings)
-                {
-                    count += rating.ReviewOverall;
-                    num += 1;
-                }
 
+                float averageRating = Pint.Ratings.Select(rating => rating.ReviewOverall)
+                    .DefaultIfEmpty(0)
+                    .Average();
 
-                float averageRating = (count / num) + 0.5f;
-                return averageRating;
+                return averageRating + 0.5f;
             }
         }
 
