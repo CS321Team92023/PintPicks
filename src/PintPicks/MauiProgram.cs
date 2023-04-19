@@ -5,16 +5,27 @@ using PintPicks.View.Pages;
 using PintPicks.Services;
 using PintPicks.ViewModel;
 using CommunityToolkit.Maui;
+using System.Reflection;
+using Microsoft.Extensions.Configuration;
 
 namespace PintPicks;
 
 public static class MauiProgram
 {
+
+
     public static MauiApp CreateMauiApp()
 	{
+        var a = Assembly.GetExecutingAssembly();
+        using var stream = a.GetManifestResourceStream("PintPicks.appsettings.json");
+
+        IConfiguration config = new ConfigurationBuilder()
+                    .AddJsonStream(stream)
+                    .Build();
+
         var builder = MauiApp.CreateBuilder()
             .UseMauiApp<App>()
-            .RegisterAppServices()
+            .RegisterAppServices(config)
             .RegisterViewModels()
             .RegisterPages()
             .UseMauiCommunityToolkit()
@@ -24,16 +35,19 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+        builder.Configuration.AddConfiguration(config);
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+        return builder.Build();
 	}
 
-    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder)
+    public static MauiAppBuilder RegisterAppServices(this MauiAppBuilder mauiAppBuilder, IConfiguration config)
     {
-        mauiAppBuilder.Services.AddPintPicksClient(new Uri("https://dl4f2wy9w7.execute-api.us-east-1.amazonaws.com"));
+        var settings = config.GetRequiredSection("Settings").Get<Settings>();
+        mauiAppBuilder.Services.AddPintPicksClient(new Uri(settings.ApiUrl));
         mauiAppBuilder.Services.AddTransient<PromptService>();
         mauiAppBuilder.Services.AddTransient<PermissionService>();
         mauiAppBuilder.Services.AddTransient<MediaPickerService>();
