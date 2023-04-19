@@ -8,6 +8,7 @@ using PintPicks.Services;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Threading.Channels;
+using Microsoft.Extensions.Configuration;
 
 namespace PintPicks.ViewModel
 {
@@ -17,18 +18,21 @@ namespace PintPicks.ViewModel
         private readonly PromptService _promptService;
         private readonly PermissionService _permissionService;
         private readonly MediaPickerService _mediaPickerService;
+        private readonly IConfiguration _configuration;
 
         public MainPageViewModel(
             IPintPicksClientFactory pintPicksClientFactory,
             PromptService promptService,
             PermissionService permissionService,
-            MediaPickerService mediaPickerService)
+            MediaPickerService mediaPickerService,
+            IConfiguration configuration)
         {
             Title = "PintPicks";
             _pintPicksClientFactory = pintPicksClientFactory;
             _promptService = promptService;
             _permissionService = permissionService;
             _mediaPickerService = mediaPickerService;
+            _configuration = configuration;
         }
 
         #region event commands
@@ -82,8 +86,10 @@ namespace PintPicks.ViewModel
                 var fileExtension = Path.GetExtension(file.FileName);
 
                 //get the pints
+
+                var settings = _configuration.GetRequiredSection("Settings").Get<Settings>();
                 var client = await _pintPicksClientFactory.CreateAsync<MenuClient>();
-                var pints = await client.GetPintsFromMenuImage(stream, fileExtension);
+                var pints = await client.GetPintsFromMenuImage(stream, fileExtension, settings.Apikey);
 
                 //navigate
                 await NavigateToPintListPage(pints);

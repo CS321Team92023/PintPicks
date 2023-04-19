@@ -53,7 +53,8 @@ namespace PintPicks.Api.Client.Clients
         {
             if (string.IsNullOrWhiteSpace(authToken))
                 throw new UnauthorizedAccessException();
-            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", authToken);
+
+            _httpClient.DefaultRequestHeaders.Add("x-api-key", authToken);
         }
 
 
