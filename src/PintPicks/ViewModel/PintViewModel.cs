@@ -11,6 +11,7 @@ namespace PintPicks.ViewModel
         [ObservableProperty]
         [NotifyPropertyChangedFor(nameof(PintName))]
         [NotifyPropertyChangedFor(nameof(OverallRating))]
+        [NotifyPropertyChangedFor(nameof(OffsetOveralRating))]
         PintModel pint;
 
         public string PintName
